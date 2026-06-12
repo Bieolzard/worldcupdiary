@@ -1,0 +1,13 @@
+:root {
+  --bg: #091c3a;
+  --panel: #10284f;
+  --gold: #d4af37;
+  --text: #ffffff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+}
