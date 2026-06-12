@@ -4,13 +4,14 @@ import { computed } from "vue";
 import { formations } from "~/data/formation";
 import type { Player } from "~/types/match";
 import MatchPitch from "./MatchPitch.vue";
-
+import { Icon } from "@iconify/vue";
 const props = defineProps<{
   players: Player[];
   formation: string;
   teamName: string;
   side: "home" | "away";
   headerColor?: string;
+  countryCode: string;
 }>();
 
 const getXPosition = (x: number) => {
@@ -39,54 +40,150 @@ const positionedPlayers = computed(() => {
 </script>
 
 <template>
-  <div class="bg-[#0b1b3a] rounded-xl border border-slate-600 overflow-hidden">
-    <!-- Header -->
+  <div
+    class="
+      bg-[#091b3b]
+      border
+      border-slate-500
+      overflow-hidden
+      shadow-xl
+    "
+  >
+    <!-- HEADER -->
     <div
       :class="[
-    'flex items-center justify-between px-4 py-3 border-b border-slate-600',
-    headerColor || 'bg-[#10284f]'
-  ]"
+        'flex items-center justify-between px-4 py-2 border-b border-slate-500',
+        headerColor || 'bg-gradient-to-b from-[#27469a] to-[#19356d]'
+      ]"
     >
-      <h2 class="font-bold text-white">
-        {{ teamName }}
-      </h2>
+      <div class="flex items-center gap-2">
+        <Icon
+          :icon="`circle-flags:${countryCode}`"
+          class="w-5 h-5"
+        />
 
-      <span class="text-sm text-yellow-400 font-semibold">
+        <h2
+          class="
+            text-white
+            uppercase
+            font-black
+            tracking-wide
+          "
+        >
+          {{ teamName }}
+        </h2>
+      </div>
+
+      <span
+        class="
+          text-yellow-400
+          font-black
+          tracking-wide
+        "
+      >
         {{ formation }}
       </span>
     </div>
 
-    <!-- Campo -->
+    <!-- CAMPO -->
     <MatchPitch :side="side">
-      <!-- Linha central vertical -->
+
+      <!-- Linha central -->
       <div
-        class="absolute top-0 bottom-0 left-1/2 border-l-2 border-white/50"
+        class="
+          absolute
+          top-0
+          bottom-0
+          left-1/2
+          border-l-2
+          border-white/40
+        "
       />
 
-      <!-- Círculo central -->
+      <!-- Circulo central -->
       <div
-        class="absolute top-1/2 left-1/2 w-24 h-24 rounded-full border-2 border-white/50 -translate-x-1/2 -translate-y-1/2"
+        class="
+          absolute
+          top-1/2
+          left-1/2
+          w-20
+          h-20
+          rounded-full
+          border-2
+          border-white/40
+          -translate-x-1/2
+          -translate-y-1/2
+        "
       />
 
       <!-- Jogadores -->
       <div
         v-for="player in positionedPlayers"
-        class="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+        :key="player.number"
+        class="
+          absolute
+          flex
+          flex-col
+          items-center
+          -translate-x-1/2
+          -translate-y-1/2
+        "
         :style="{
           left: `${player.x}%`,
-          top: `${player.y}%`,
+          top: `${player.y}%`
         }"
       >
+        <!-- Bola do jogador -->
         <div
-          class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold"
+          class="
+            w-9
+            h-9
+            rounded-full
+
+            bg-gradient-to-b
+            from-red-400
+            to-red-700
+
+            border-2
+            border-white
+
+            text-white
+            font-black
+
+            flex
+            items-center
+            justify-center
+
+            shadow-lg
+          "
         >
           {{ player.number }}
         </div>
 
-        <span class="text-white text-xs mt-1 whitespace-nowrap">
+        <!-- Nome -->
+        <div
+          class="
+            mt-1
+
+            bg-black/55
+
+            px-1.5
+            py-[1px]
+
+            text-[10px]
+            uppercase
+            font-black
+            tracking-tight
+
+            text-white
+
+            whitespace-nowrap
+          "
+        >
           {{ player.name }}
-        </span>
+        </div>
       </div>
+
     </MatchPitch>
   </div>
 </template>

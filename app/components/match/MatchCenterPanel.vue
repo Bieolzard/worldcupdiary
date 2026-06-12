@@ -1,38 +1,54 @@
 <script setup lang="ts">
-import type {
-  MatchEvent,
-  MatchStats
-} from "~/types/match";
-
-defineProps<{
+import type { MatchEvent, MatchStats } from "~/types/match";
+import { Icon } from "@iconify/vue";
+const props = defineProps<{
+  homeScore: number;
+  awayScore: number;
   events: MatchEvent[];
   stats: MatchStats;
 }>();
 
-const getEventIcon = (
-  type: MatchEvent["type"]
-) => {
+const getEventIcon = (type: MatchEvent["type"]) => {
   switch (type) {
     case "goal":
-      return "⚽";
+      return "game-icons:soccer-ball";
 
     case "yellow":
-      return "🟨";
+      return "mdi:card";
 
     case "red":
-      return "🟥";
+      return "mdi:card";
 
     case "substitution":
-      return "🔁";
+      return "mdi:swap-horizontal";
 
     case "penalty":
-      return "🎯";
+      return "mdi:bullseye-arrow";
 
     case "own_goal":
-      return "🥅";
+      return "mdi:soccer";
 
     default:
-      return "•";
+      return "mdi:circle-small";
+  }
+};
+
+const getEventColor = (type: MatchEvent["type"]) => {
+  switch (type) {
+    case "yellow":
+      return "text-yellow-400";
+
+    case "red":
+      return "text-red-500";
+
+    case "goal":
+      return "text-white";
+
+    case "substitution":
+      return "text-cyan-400";
+
+    default:
+      return "text-white";
   }
 };
 </script>
@@ -40,52 +56,84 @@ const getEventIcon = (
 <template>
   <div
     class="
-      bg-[#10284f]
-      rounded-xl
+      bg-gradient-to-b
+      from-[#0e2248]
+      to-[#08162f]
       border
-      border-slate-600
+      border-slate-500
       overflow-hidden
       text-white
+      shadow-2xl
     "
   >
-    <!-- EVENTOS -->
-    <div class="p-4">
-      <h3
+    <!-- RESULTADO -->
+    <div
+      class="
+        text-center
+        border-b
+        border-slate-600
+        py-4
+      "
+    >
+      <div
         class="
-          text-center
-          font-bold
+          text-yellow-400
           uppercase
-          tracking-wide
-          mb-4
+          tracking-[0.35em]
+          text-xs
+          font-black
         "
       >
-        Eventos
-      </h3>
+        Fim de Jogo
+      </div>
 
+      <div
+        class="
+          text-[5rem]
+          font-black
+          leading-none
+          mt-2
+          text-white
+        "
+      >
+        {{ homeScore }}
+        -
+        {{ awayScore }}
+      </div>
+    </div>
+
+    <!-- EVENTOS -->
+    <div class="p-4">
       <div
         v-for="event in events"
         :key="`${event.minute}-${event.player}`"
         class="
           flex
           items-center
-          gap-2
-          py-2
+          gap-3
+          py-1.5
           text-sm
+          font-bold
+          uppercase
         "
       >
         <span
           class="
             text-yellow-400
-            font-bold
             w-10
+            text-right
           "
         >
           {{ event.minute }}'
         </span>
 
-        <span>
-          {{ getEventIcon(event.type) }}
-        </span>
+        <Icon
+          :icon="getEventIcon(event.type)"
+          :class="[
+            'w-4 h-4',
+            getEventColor(event.type)
+          ]"
+        />
 
         <span>
           {{ event.player }}
@@ -103,48 +151,149 @@ const getEventIcon = (
 
     <!-- ESTATÍSTICAS -->
     <div class="p-4">
-      <h3
+      <div
         class="
           text-center
-          font-bold
+          text-slate-300
           uppercase
-          tracking-wide
+          tracking-[0.35em]
+          text-xs
+          font-black
           mb-4
         "
       >
         Estatísticas
-      </h3>
+      </div>
 
+      <!-- Posse -->
       <div
         class="
           grid
-          gap-3
+          grid-cols-[60px_1fr_60px]
+          items-center
+          text-sm
+          mb-2
+        "
+      >
+        <span class="text-yellow-400 font-black">
+          {{ stats.possession[0] }}%
+        </span>
+
+        <div
+          class="
+            text-center
+            uppercase
+            bg-black/25
+            py-1
+            border-y
+            border-slate-700
+          "
+        >
+          Posse de Bola
+        </div>
+
+        <span
+          class="
+            text-yellow-400
+            font-black
+            text-right
+          "
+        >
+          {{ stats.possession[1] }}%
+        </span>
+      </div>
+
+      <!-- Finalizações -->
+      <div
+        class="
+          grid
+          grid-cols-[60px_1fr_60px]
+          items-center
+          text-sm
+          mb-2
+        "
+      >
+        <span>{{ stats.shots[0] }}</span>
+
+        <div
+          class="
+            text-center
+            uppercase
+            bg-black/25
+            py-1
+            border-y
+            border-slate-700
+          "
+        >
+          Finalizações
+        </div>
+
+        <span class="text-right">
+          {{ stats.shots[1] }}
+        </span>
+      </div>
+
+      <!-- No alvo -->
+      <div
+        class="
+          grid
+          grid-cols-[60px_1fr_60px]
+          items-center
+          text-sm
+          mb-2
+        "
+      >
+        <span>
+          {{ stats.shotsOnTarget[0] }}
+        </span>
+
+        <div
+          class="
+            text-center
+            uppercase
+            bg-black/25
+            py-1
+            border-y
+            border-slate-700
+          "
+        >
+          No Alvo
+        </div>
+
+        <span class="text-right">
+          {{ stats.shotsOnTarget[1] }}
+        </span>
+      </div>
+
+      <!-- Escanteios -->
+      <div
+        class="
+          grid
+          grid-cols-[60px_1fr_60px]
+          items-center
           text-sm
         "
       >
-        <div class="flex justify-between">
-          <span>{{ stats.possession[0] }}%</span>
-          <span>Posse</span>
-          <span>{{ stats.possession[1] }}%</span>
+        <span>
+          {{ stats.corners[0] }}
+        </span>
+
+        <div
+          class="
+            text-center
+            uppercase
+            bg-black/25
+            py-1
+            border-y
+            border-slate-700
+          "
+        >
+          Escanteios
         </div>
 
-        <div class="flex justify-between">
-          <span>{{ stats.shots[0] }}</span>
-          <span>Finalizações</span>
-          <span>{{ stats.shots[1] }}</span>
-        </div>
-
-        <div class="flex justify-between">
-          <span>{{ stats.shotsOnTarget[0] }}</span>
-          <span>No alvo</span>
-          <span>{{ stats.shotsOnTarget[1] }}</span>
-        </div>
-
-        <div class="flex justify-between">
-          <span>{{ stats.corners[0] }}</span>
-          <span>Escanteios</span>
-          <span>{{ stats.corners[1] }}</span>
-        </div>
+        <span class="text-right">
+          {{ stats.corners[1] }}
+        </span>
       </div>
     </div>
   </div>

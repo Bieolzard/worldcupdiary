@@ -6,55 +6,77 @@ defineProps<{
 
 <template>
   <div
-  class="
-    relative
-    h-[240px]
-    overflow-hidden
-  "
-  style="
-    background:
-      repeating-linear-gradient(
-        90deg,
-        #1c8c3a 0px,
-        #1c8c3a 40px,
-        #239845 40px,
-        #239845 80px
-      );
-  "
->
+    class="
+      relative
+      h-[260px]
+      overflow-hidden
+    "
+    style="
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #1c8c3a 0px,
+          #1c8c3a 40px,
+          #239845 40px,
+          #239845 80px
+        );
+    "
+  >
+    <!-- Sombra do gramado -->
+    <div
+      class="
+        absolute
+        inset-0
+        pointer-events-none
+      "
+      style="
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(0,0,0,.18),
+            transparent 20%,
+            transparent 80%,
+            rgba(0,0,0,.15)
+          );
+      "
+    />
 
-<div
-  class="
-    absolute
-    inset-0
-    bg-black/10
-    pointer-events-none
-  "
-/>
+    <!-- Borda interna -->
+    <div
+      class="
+        absolute
+        inset-1
+        border
+        border-white/10
+        pointer-events-none
+      "
+    />
 
-<div
-  class="
-    absolute
-    left-0
-    top-1/2
-    w-2
-    h-12
-    bg-white/60
-    -translate-y-1/2
-  "
-/>
+    <!-- Gols -->
+    <div
+      class="
+        absolute
+        left-0
+        top-1/2
+        w-2
+        h-12
+        bg-white/70
+        -translate-y-1/2
+      "
+    />
 
-<div
-  class="
-    absolute
-    right-0
-    top-1/2
-    w-2
-    h-12
-    bg-white/60
-    -translate-y-1/2
-  "
-/>
+    <div
+      class="
+        absolute
+        right-0
+        top-1/2
+        w-2
+        h-12
+        bg-white/70
+        -translate-y-1/2
+      "
+    />
+
     <!-- Linha central -->
     <div
       class="
@@ -64,6 +86,21 @@ defineProps<{
         left-1/2
         w-px
         bg-white/50
+      "
+    />
+
+    <!-- Marca central -->
+    <div
+      class="
+        absolute
+        left-1/2
+        top-1/2
+        w-2
+        h-2
+        rounded-full
+        bg-white/50
+        -translate-x-1/2
+        -translate-y-1/2
       "
     />
 
@@ -113,6 +150,40 @@ defineProps<{
       "
     />
 
+    <!-- Marca penal esquerda -->
+    <!-- <div
+      class="
+        absolute
+        left-[12%]
+        top-1/2
+        w-1.5
+        h-1.5
+        rounded-full
+        bg-white/50
+        -translate-x-1/2
+        -translate-y-1/2
+      "
+    /> -->
+
+    <!-- Meia lua esquerda -->
+    <!-- <div
+      class="
+        absolute
+        left-[17%]
+        top-1/2
+        w-10
+        h-10
+        rounded-full
+        border-2
+        border-white/30
+        -translate-x-1/2
+        -translate-y-1/2
+      "
+      style="
+        clip-path: inset(0 50% 0 0);
+      "
+    /> -->
+
     <!-- Área direita -->
     <div
       class="
@@ -142,6 +213,45 @@ defineProps<{
         -translate-y-1/2
       "
     />
+
+    <!-- Marca penal direita -->
+    <!-- Meia lua esquerda -->
+<!-- <div
+  class="
+    absolute
+    left-[17%]
+    top-1/2
+    w-10
+    h-10
+    rounded-full
+    border-2
+    border-white/30
+    -translate-x-1/2
+    -translate-y-1/2
+  "
+  style="
+    clip-path: inset(0 0 0 50%);
+  "
+/>
+
+    
+<div
+  class="
+    absolute
+    right-[17%]
+    top-1/2
+    w-10
+    h-10
+    rounded-full
+    border-2
+    border-white/30
+    translate-x-1/2
+    -translate-y-1/2
+  "
+  style="
+    clip-path: inset(0 50% 0 0);
+  "
+/> -->
 
     <slot />
   </div>

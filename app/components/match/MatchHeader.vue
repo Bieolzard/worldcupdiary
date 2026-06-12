@@ -19,61 +19,108 @@ defineProps<{
 <template>
   <div
     class="
-      text-center
+      relative
+      mb-6
+      border-y
+      border-slate-500
+      bg-gradient-to-b
+      from-[#081225]
+      via-[#0b1b3a]
+      to-[#081225]
+      py-3
       text-white
-      mb-8
     "
   >
-    <p
+    <!-- Barra superior -->
+    <div
       class="
+        flex
+        justify-between
+        text-xs
         uppercase
         tracking-widest
-        text-slate-400
-        text-sm
+        px-4
+        text-slate-300
       "
     >
-      {{ stage }}
-    </p>
+      <span>Copa do Mundo 2026</span>
 
-    <h1
-      class="
-        text-6xl
-        font-bold
-        my-2
-      "
-    >
-      {{ homeTeam.score }}
-      -
-      {{ awayTeam.score }}
-    </h1>
+      <span>
+        {{ date }} |
+        {{ stadium }}
+      </span>
+    </div>
 
-    <p
+    <!-- Centro -->
+    <div
       class="
-        text-2xl
-        font-semibold
-      "
-    >
-      {{ homeTeam.name }}
-      vs
-      {{ awayTeam.name }}
-    </p>
-
-    <p
-      class="
+        text-center
         mt-2
-        text-slate-400
       "
     >
-      {{ stadium }}
-    </p>
+      <p
+        class="
+          uppercase
+          tracking-wider
+          text-sm
+          font-bold
+          text-slate-200
+        "
+      >
+        Fase de Grupos - {{ stage }}
+      </p>
 
-    <p
-      class="
-        text-slate-500
-        text-sm
-      "
-    >
-      {{ date }}
-    </p>
+      <p
+        class="
+          text-yellow-400
+          font-black
+          text-2xl
+          uppercase
+          mt-1
+        "
+      >
+        Fim de Jogo
+      </p>
+
+      <div
+        class="
+          flex
+          justify-center
+          items-center
+          gap-8
+          mt-2
+        "
+      >
+        <span
+          class="
+            text-7xl
+            font-black
+            leading-none
+          "
+        >
+          {{ homeTeam.score }}
+        </span>
+
+        <span
+          class="
+            text-5xl
+            font-black
+            text-slate-300
+          "
+        >
+          -
+        </span>
+
+        <span
+          class="
+            text-7xl
+            font-black
+            leading-none
+          "
+        >
+          {{ awayTeam.score }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>

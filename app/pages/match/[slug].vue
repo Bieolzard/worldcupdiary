@@ -41,6 +41,7 @@ const match = matches.find(
       :players="match.homeTeam.players"
       :formation="match.homeTeam.formation"
       :team-name="match.homeTeam.name"
+      country-code="kr"
     />
 
     <MatchLineup
@@ -51,9 +52,11 @@ const match = matches.find(
   <!-- CENTRO -->
   <div>
   <MatchCenterPanel
-    :events="match.events"
-    :stats="match.stats"
-  />
+  :home-score="match.homeTeam.score"
+  :away-score="match.awayTeam.score"
+  :events="match.events"
+  :stats="match.stats"
+/>
 </div>
 
   <!-- DIREITA -->
@@ -64,6 +67,7 @@ const match = matches.find(
       :players="match.awayTeam.players"
       :formation="match.awayTeam.formation"
       :team-name="match.awayTeam.name"
+      country-code="cz"
     />
 
     <MatchLineup

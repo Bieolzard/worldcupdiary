@@ -11,7 +11,7 @@ export const match: Match = {
 
     homeTeam: {
   name: "Coreia do Sul",
-  code: "kor",
+  code: "kr",
   formation: "4-2-3-1",
   score: 2,
 
@@ -86,7 +86,7 @@ export const match: Match = {
 
     awayTeam: {
   name: "República Tcheca",
-  code: "cze",
+  code: "cz",
   formation: "4-4-2",
   score: 1,
 
@@ -161,11 +161,24 @@ export const match: Match = {
 
     events: [
         {
-            minute: 34,
+            minute: 59,
+            type: "goal",
+            team: "away",
+            player: "Ladislav Krejčí"
+        },
+        {
+            minute: 67,
             type: "goal",
             team: "home",
-            player: "Son"
-        }
+            player: "Hwang In-beom"
+        },
+        {
+            minute: 80,
+            type: "goal",
+            team: "home",
+            player: "Hyeon-gyu Oh"
+        },
+
     ],
 
     stats: {
