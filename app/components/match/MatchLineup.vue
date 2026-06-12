@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Player } from "~/types/match";
-
+import { Icon } from "@iconify/vue";
 defineProps<{
   players: Player[];
 }>();
@@ -101,37 +101,101 @@ const getPositionColor = (
     "
   >
     <!-- Header -->
+   <div
+  class="
+    grid
+    grid-cols-[90px_1fr_90px]
+    items-center
+
+    px-2
+    py-1
+
+    border-b
+    border-slate-600
+
+    bg-gradient-to-b
+    from-[#243f7d]
+    to-[#152b57]
+
+    text-white
+  "
+>
+  <!-- ESQUERDA -->
+  <div class="flex items-center gap-1">
+    <Icon
+      icon="mdi:menu-left"
+      class="text-white w-8 h-8"
+    />
+
     <div
       class="
-        grid
-        grid-cols-[50px_1fr_50px]
-        items-center
         px-2
-        py-1
-        text-white
-        font-bold
-        uppercase
-        text-xs
-        tracking-wider
-        border-b
-        border-slate-600
-        bg-gradient-to-b
-        from-[#243f7d]
-        to-[#152b57]
+        h-5
+
+        flex
+        items-center
+
+        bg-[#111]
+        border
+        border-slate-500
+
+        text-[11px]
+        font-black
       "
     >
-      <span class="text-left">
-        L1
-      </span>
-
-      <span class="text-center">
-        Titulares
-      </span>
-
-      <span class="text-right">
-        R1
-      </span>
+      L1
     </div>
+    
+  </div>
+
+  <!-- TÍTULO -->
+  <div
+    class="
+      text-center
+      uppercase
+      text-xs
+      tracking-widest
+      font-black
+    "
+  >
+    Titulares
+  </div>
+
+  <!-- DIREITA -->
+  <div
+    class="
+      flex
+      items-center
+      justify-end
+      gap-1
+    "
+  >
+    <div
+      class="
+        px-2
+        h-5
+
+        flex
+        items-center
+
+        bg-[#111]
+        border
+        border-slate-500
+
+        text-[11px]
+        font-black
+      "
+    >
+      R1
+    </div>
+
+    <Icon
+      icon="mdi:menu-right"
+      class="text-white w-8 h-8"
+    />
+</div>
+</div>
+    
 
     <div
       v-for="(player, index) in players"

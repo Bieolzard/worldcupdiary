@@ -64,18 +64,20 @@ const positionedPlayers = computed(() => {
   <h2
     class="
       flex-1
-      text-center
-      text-white
-      uppercase
-      font-black
-      tracking-wide
-      text-xl
+    text-center
+    text-white
+    uppercase
+    font-black
+    tracking-wide
+    text-[30px]
+    drop-shadow-[0_2px_2px_rgba(0,0,0,.7)]
     "
   >
     {{ teamName }}
   </h2>
 </div>
 
+<!-- BARRA FORMAÇÃO -->
 <!-- BARRA FORMAÇÃO -->
 <div
   class="
@@ -87,63 +89,78 @@ const positionedPlayers = computed(() => {
     h-8
 
     bg-gradient-to-b
-    from-[#020816]
+    from-[#08101f]
     to-[#000000]
 
     border-b
     border-slate-500
-
     text-white
   "
 >
-  <div
-    class="
-      flex
-      items-center
-      gap-1
+  <!-- Esquerda -->
+  <div class="flex items-center gap-1">
+    <Icon
+      icon="mdi:menu-left"
+      class="text-white w-8 h-8"
+    />
 
-      px-2
+    <div
+      class="
+        px-2
+        h-5
 
-      bg-[#101010]
-      border
-      border-slate-500
+        flex
+        items-center
 
-      font-black
-      text-sm
-    "
-  >
-    ◀
-    <span>L2</span>
+        bg-[#111]
+        border
+        border-slate-500
+
+        text-[11px]
+        font-black
+      "
+    >
+      L2
+    </div>
   </div>
 
+  <!-- Formação -->
   <span
     class="
+      text-lg
       font-black
-      text-xl
-      tracking-wide
+      tracking-wider
+      text-white
     "
   >
     {{ formation }}
   </span>
 
-  <div
-    class="
-      flex
-      items-center
-      gap-1
+  <!-- Direita -->
+  <div class="flex items-center gap-1">
+    <div
+      class="
+        px-2
+        h-5
 
-      px-2
+        flex
+        items-center
 
-      bg-[#101010]
-      border
-      border-slate-500
+        bg-[#111]
+        border
+        border-slate-500
 
-      font-black
-      text-sm
-    "
-  >
-    <span>R2</span>
-    ▶
+        text-[11px]
+        font-black
+      "
+    >
+      R2
+    </div>
+
+    <Icon
+      icon="mdi:menu-right"
+      class="text-white w-8 h-8"
+    />
   </div>
 </div>
 
