@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { matches } from "~/data";
-
+import MatchCenterPanel from "~/components/match/MatchCenterPanel.vue";
 const route = useRoute();
 
 const match = matches.find(
@@ -26,37 +26,51 @@ const match = matches.find(
     />
 
     <div
-      class="
-        grid
-        grid-cols-1
-        xl:grid-cols-[1fr_350px_1fr]
-        gap-6
-      "
-    >
-      <MatchFormation
-  side="home"
-  :players="match.homeTeam.players"
-  :formation="match.homeTeam.formation"
-  :team-name="match.homeTeam.name"
-/>
+  class="
+    grid
+    grid-cols-1
+    xl:grid-cols-[1fr_350px_1fr]
+    gap-6
+  "
+>
+  <!-- ESQUERDA -->
+  <div class="flex flex-col gap-4">
+    <MatchFormation
+      side="home"
+      header-color="bg-blue-900"
+      :players="match.homeTeam.players"
+      :formation="match.homeTeam.formation"
+      :team-name="match.homeTeam.name"
+    />
 
-      <MatchStats
-        :stats="match.stats"
-      />
+    <MatchLineup
+      :players="match.homeTeam.players"
+    />
+  </div>
 
-      
-<MatchFormation
-  side="away"
-  :players="match.awayTeam.players"
-  :formation="match.awayTeam.formation"
-  :team-name="match.awayTeam.name"
-/>
-    </div>
+  <!-- CENTRO -->
+  <div>
+  <MatchCenterPanel
+    :events="match.events"
+    :stats="match.stats"
+  />
+</div>
 
-    <div class="mt-6">
-      <MatchEvents
-        :events="match.events"
-      />
-    </div>
+  <!-- DIREITA -->
+  <div class="flex flex-col gap-4">
+    <MatchFormation
+      side="away"
+      header-color="bg-red-900"
+      :players="match.awayTeam.players"
+      :formation="match.awayTeam.formation"
+      :team-name="match.awayTeam.name"
+    />
+
+    <MatchLineup
+      :players="match.awayTeam.players"
+    />
+  </div>
+</div>
+
   </div>
 </template>

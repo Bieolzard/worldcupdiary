@@ -38,10 +38,12 @@ export interface Match {
 
   events: MatchEvent[];
 
-  stats: {
-    possession: [number, number];
-    shots: [number, number];
-    shotsOnTarget: [number, number];
-    corners: [number, number];
-  };
+  stats: MatchStats;
+}
+
+export interface MatchStats {
+  possession: [number, number];
+  shots: [number, number];
+  shotsOnTarget: [number, number];
+  corners: [number, number];
 }

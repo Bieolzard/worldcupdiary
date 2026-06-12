@@ -3,12 +3,14 @@ import { computed } from "vue";
 
 import { formations } from "~/data/formation";
 import type { Player } from "~/types/match";
+import MatchPitch from "./MatchPitch.vue";
 
 const props = defineProps<{
   players: Player[];
   formation: string;
   teamName: string;
   side: "home" | "away";
+  headerColor?: string;
 }>();
 
 const getXPosition = (x: number) => {
@@ -40,7 +42,10 @@ const positionedPlayers = computed(() => {
   <div class="bg-[#0b1b3a] rounded-xl border border-slate-600 overflow-hidden">
     <!-- Header -->
     <div
-      class="flex items-center justify-between px-4 py-3 bg-[#10284f] border-b border-slate-600"
+      :class="[
+    'flex items-center justify-between px-4 py-3 border-b border-slate-600',
+    headerColor || 'bg-[#10284f]'
+  ]"
     >
       <h2 class="font-bold text-white">
         {{ teamName }}
@@ -52,7 +57,7 @@ const positionedPlayers = computed(() => {
     </div>
 
     <!-- Campo -->
-    <div class="relative h-[280px] bg-green-700">
+    <MatchPitch :side="side">
       <!-- Linha central vertical -->
       <div
         class="absolute top-0 bottom-0 left-1/2 border-l-2 border-white/50"
@@ -73,7 +78,7 @@ const positionedPlayers = computed(() => {
         }"
       >
         <div
-          class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center font-bold"
+          class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold"
         >
           {{ player.number }}
         </div>
@@ -82,6 +87,6 @@ const positionedPlayers = computed(() => {
           {{ player.name }}
         </span>
       </div>
-    </div>
+    </MatchPitch>
   </div>
 </template>
