@@ -49,41 +49,103 @@ const positionedPlayers = computed(() => {
       shadow-xl
     "
   >
-    <!-- HEADER -->
-    <div
-      :class="[
-        'flex items-center justify-between px-4 py-2 border-b border-slate-500',
-        headerColor || 'bg-gradient-to-b from-[#27469a] to-[#19356d]'
-      ]"
-    >
-      <div class="flex items-center gap-2">
-        <Icon
-          :icon="`circle-flags:${countryCode}`"
-          class="w-5 h-5"
-        />
+   <!-- HEADER PAÍS -->
+<div
+  :class="[
+    'flex items-center gap-3 px-4 py-2 border-b border-slate-400',
+    headerColor || 'bg-gradient-to-b from-[#3558b3] to-[#1d3876]'
+  ]"
+>
+  <Icon
+    :icon="`circle-flags:${countryCode}`"
+    class="w-7 h-7 shrink-0"
+  />
 
-        <h2
-          class="
-            text-white
-            uppercase
-            font-black
-            tracking-wide
-          "
-        >
-          {{ teamName }}
-        </h2>
-      </div>
+  <h2
+    class="
+      flex-1
+      text-center
+      text-white
+      uppercase
+      font-black
+      tracking-wide
+      text-xl
+    "
+  >
+    {{ teamName }}
+  </h2>
+</div>
 
-      <span
-        class="
-          text-yellow-400
-          font-black
-          tracking-wide
-        "
-      >
-        {{ formation }}
-      </span>
-    </div>
+<!-- BARRA FORMAÇÃO -->
+<div
+  class="
+    flex
+    items-center
+    justify-between
+
+    px-2
+    h-8
+
+    bg-gradient-to-b
+    from-[#020816]
+    to-[#000000]
+
+    border-b
+    border-slate-500
+
+    text-white
+  "
+>
+  <div
+    class="
+      flex
+      items-center
+      gap-1
+
+      px-2
+
+      bg-[#101010]
+      border
+      border-slate-500
+
+      font-black
+      text-sm
+    "
+  >
+    ◀
+    <span>L2</span>
+  </div>
+
+  <span
+    class="
+      font-black
+      text-xl
+      tracking-wide
+    "
+  >
+    {{ formation }}
+  </span>
+
+  <div
+    class="
+      flex
+      items-center
+      gap-1
+
+      px-2
+
+      bg-[#101010]
+      border
+      border-slate-500
+
+      font-black
+      text-sm
+    "
+  >
+    <span>R2</span>
+    ▶
+  </div>
+</div>
 
     <!-- CAMPO -->
     <MatchPitch :side="side">

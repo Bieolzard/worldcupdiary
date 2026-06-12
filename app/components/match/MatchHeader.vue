@@ -20,15 +20,16 @@ defineProps<{
   <div
     class="
       relative
-      mb-6
+      mb-5
       border-y
       border-slate-500
       bg-gradient-to-b
-      from-[#081225]
-      via-[#0b1b3a]
-      to-[#081225]
-      py-3
+      from-[#020814]
+      via-[#081d49]
+      to-[#020814]
+      py-4
       text-white
+      shadow-inner
     "
   >
     <!-- Barra superior -->
@@ -36,14 +37,22 @@ defineProps<{
       class="
         flex
         justify-between
-        text-xs
-        uppercase
-        tracking-widest
+        items-center
         px-4
+        text-[11px]
+        uppercase
+        tracking-[0.2em]
         text-slate-300
       "
     >
-      <span>Copa do Mundo 2026</span>
+      <span
+        class="
+          font-black
+          text-white
+        "
+      >
+        Copa do Mundo 2026
+      </span>
 
       <span>
         {{ date }} |
@@ -55,72 +64,20 @@ defineProps<{
     <div
       class="
         text-center
-        mt-2
+        mt-3
       "
     >
       <p
         class="
           uppercase
-          tracking-wider
-          text-sm
-          font-bold
-          text-slate-200
+          tracking-[0.18em]
+          text-lg
+          font-black
+          text-white
         "
       >
         Fase de Grupos - {{ stage }}
       </p>
-
-      <p
-        class="
-          text-yellow-400
-          font-black
-          text-2xl
-          uppercase
-          mt-1
-        "
-      >
-        Fim de Jogo
-      </p>
-
-      <div
-        class="
-          flex
-          justify-center
-          items-center
-          gap-8
-          mt-2
-        "
-      >
-        <span
-          class="
-            text-7xl
-            font-black
-            leading-none
-          "
-        >
-          {{ homeTeam.score }}
-        </span>
-
-        <span
-          class="
-            text-5xl
-            font-black
-            text-slate-300
-          "
-        >
-          -
-        </span>
-
-        <span
-          class="
-            text-7xl
-            font-black
-            leading-none
-          "
-        >
-          {{ awayTeam.score }}
-        </span>
-      </div>
     </div>
   </div>
 </template>
